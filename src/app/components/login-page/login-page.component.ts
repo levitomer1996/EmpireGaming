@@ -29,8 +29,21 @@ export class LoginPageComponent implements OnInit {
       ? "Not a valid email"
       : "";
   }
-  handSubmit(val) {
-    console.log(val);
-    this.ls.userLogin(val).subscribe();
+
+  postUser(user) {
+    return new Promise((reso, rej) => {
+      this.ls.userLogin(user).subscribe(data => reso(data));
+    });
+  }
+
+  async handSubmit(val) {
+    try {
+      let pending = await this.postUser(val);
+
+      if (pending.status == 200) {
+        sessionStorage.setItem("token", pending.token);
+        this.router.navigate(["./"]);
+      }
+    } catch (error) {}
   }
 }

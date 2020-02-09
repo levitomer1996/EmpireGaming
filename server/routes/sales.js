@@ -6,7 +6,7 @@ let sale = require("../mongoModels/sales");
 
 mongoose.connect("mongodb://localhost/EmpireGaming", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: false
 });
 
 router.get("/", (req, res) => {

@@ -61,6 +61,7 @@ import { CarouselComponent } from "./components/homecomps/carousel/carousel.comp
 
 import { RegisterPageComponent } from "./components/register-page/register-page.component";
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginRegisterButtonsComponent } from './components/headercomps/login-register-buttons/login-register-buttons.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 
     RegisterPageComponent,
 
-    LoginPageComponent
+    LoginPageComponent,
+
+    LoginRegisterButtonsComponent
   ],
 
   imports: [

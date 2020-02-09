@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
+var jwt = require("jsonwebtoken");
 let newUser = require("../mongoModels/newUser");
 
 mongoose.connect("mongodb://localhost/EmpireGaming", {
@@ -68,9 +69,14 @@ function checkUser(user, password) {
 router.post("/login", async (req, res) => {
   try {
     let user = await checkUser(req.body.email, req.body.password);
-    console.log(user);
+    if (user) {
+      const accessToken = jwt.sign({ userName: req.body.email }, "tomer");
+      var decoded = jwt.verify(accessToken, "tomer");
+
+      res.json({ status: 200, token: accessToken });
+    }
   } catch (err) {
-    res.json(err);
+    res.json({ message: err, status: 500 });
   }
 });
 
