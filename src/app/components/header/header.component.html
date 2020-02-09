@@ -1,5 +1,11 @@
 <header>
   <img src="https://i.imgur.com/vHW7bVn.png" />
   <app-search></app-search>
-  <app-login-register-buttons></app-login-register-buttons>
+  <app-login-register-buttons
+    *ngIf="displayButtons"
+  ></app-login-register-buttons>
+  <app-login-container
+    *ngIf="displayUserButtons"
+    (name)="(token.fname)"
+  ></app-login-container>
 </header>

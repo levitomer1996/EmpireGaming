@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { LoginService } from "src/app/services/LoginService/login.service";
+import { token } from "../../models/handleHeaderOnit";
 
 @Component({
   selector: "app-header",
@@ -7,7 +9,25 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
   value = "Clear me";
-  constructor() {}
+  token;
+  displayButtons;
+  displayUserButtons;
 
-  ngOnInit() {}
+  constructor(private ls: LoginService) {}
+
+  ngOnInit() {
+    let token = { token: sessionStorage.getItem("token") };
+
+    if (token.token !== null) {
+      this.ls.handleUserOnit(token).subscribe(data => {
+        this.token = data;
+        console.log(this.token);
+        this.displayButtons = false;
+        this.displayUserButtons = true;
+      });
+    } else {
+      this.displayButtons = true;
+      this.displayUserButtons = false;
+    }
+  }
 }

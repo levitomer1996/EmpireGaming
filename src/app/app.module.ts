@@ -62,6 +62,7 @@ import { CarouselComponent } from "./components/homecomps/carousel/carousel.comp
 import { RegisterPageComponent } from "./components/register-page/register-page.component";
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginRegisterButtonsComponent } from './components/headercomps/login-register-buttons/login-register-buttons.component';
+import { LoginContainerComponent } from './components/headercomps/login-container/login-container.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,9 @@ import { LoginRegisterButtonsComponent } from './components/headercomps/login-re
 
     LoginPageComponent,
 
-    LoginRegisterButtonsComponent
+    LoginRegisterButtonsComponent,
+
+    LoginContainerComponent
   ],
 
   imports: [

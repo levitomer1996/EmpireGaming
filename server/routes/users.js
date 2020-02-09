@@ -60,7 +60,7 @@ function checkUser(user, password) {
       } else if (!bcrypt.compareSync(password, results.password)) {
         rej("Password is incorrect");
       } else {
-        reso(true);
+        reso(results);
       }
     });
   });
@@ -69,15 +69,19 @@ function checkUser(user, password) {
 router.post("/login", async (req, res) => {
   try {
     let user = await checkUser(req.body.email, req.body.password);
-    if (user) {
-      const accessToken = jwt.sign({ userName: req.body.email }, "tomer");
-      var decoded = jwt.verify(accessToken, "tomer");
+    const accessToken = jwt.sign(user, "tomer");
+    var decoded = jwt.verify(accessToken, "tomer");
 
-      res.json({ status: 200, token: accessToken });
-    }
+    res.json({ status: 200, token: accessToken });
   } catch (err) {
     res.json({ message: err, status: 500 });
   }
+});
+
+router.post("/checktoken", (req, res) => {
+  var decoded = jwt.verify(req.body.token, "tomer");
+  console.log(decoded);
+  res.status(200).json(decoded);
 });
 
 module.exports = router;
