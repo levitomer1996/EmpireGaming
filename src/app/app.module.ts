@@ -60,9 +60,14 @@ import { SaleDivComponent } from "./components/homecomps/sale-div/sale-div.compo
 import { CarouselComponent } from "./components/homecomps/carousel/carousel.component";
 
 import { RegisterPageComponent } from "./components/register-page/register-page.component";
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LoginRegisterButtonsComponent } from './components/headercomps/login-register-buttons/login-register-buttons.component';
-import { LoginContainerComponent } from './components/headercomps/login-container/login-container.component';
+import { LoginPageComponent } from "./components/login-page/login-page.component";
+import { LoginRegisterButtonsComponent } from "./components/headercomps/login-register-buttons/login-register-buttons.component";
+import { LoginContainerComponent } from "./components/headercomps/login-container/login-container.component";
+
+//Redux
+import { NgReduxModule, NgRedux } from "@angular-redux/store";
+import { StoreModule } from "@ngrx/store";
+import { reducers } from "./reducer/reducers";
 
 @NgModule({
   declarations: [
@@ -95,7 +100,9 @@ import { LoginContainerComponent } from './components/headercomps/login-containe
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    NgReduxModule,
+    StoreModule.forRoot({ message: reducers })
   ],
 
   providers: [],

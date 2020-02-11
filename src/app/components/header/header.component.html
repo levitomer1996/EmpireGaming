@@ -8,4 +8,5 @@
     *ngIf="displayUserButtons"
     (name)="(token.fname)"
   ></app-login-container>
+  {{ displayUserButtons | async }}
 </header>

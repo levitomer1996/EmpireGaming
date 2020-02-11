@@ -2,6 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { LoginService } from "src/app/services/LoginService/login.service";
 import { token } from "../../models/handleHeaderOnit";
 
+//Redux
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+
+interface AppState {
+  message: string;
+}
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -11,23 +19,24 @@ export class HeaderComponent implements OnInit {
   value = "Clear me";
   token;
   displayButtons;
-  displayUserButtons;
+  displayUserButtons: Observable<string>;
 
-  constructor(private ls: LoginService) {}
+  constructor(private ls: LoginService, private store: Store<AppState>) {
+    this.displayUserButtons = this.store.select("message");
+  }
 
   ngOnInit() {
     let token = { token: sessionStorage.getItem("token") };
-
+    console.log(this.displayUserButtons);
     if (token.token !== null) {
       this.ls.handleUserOnit(token).subscribe(data => {
         this.token = data;
-        console.log(this.token);
         this.displayButtons = false;
-        this.displayUserButtons = true;
       });
     } else {
+      this.store.dispatch({ type: "ConnectUser" });
       this.displayButtons = true;
-      this.displayUserButtons = false;
+      console.log(this.displayButtons, this.displayUserButtons);
     }
   }
 }
