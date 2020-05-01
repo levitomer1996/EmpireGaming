@@ -1,3 +1,4 @@
+
 import { BrowserModule } from "@angular/platform-browser";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -100,7 +101,7 @@ import { reducers } from "./reducer/reducers";
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule,
+    ,
     NgReduxModule,
     StoreModule.forRoot({ message: reducers })
   ],

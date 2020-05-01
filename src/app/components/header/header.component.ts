@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { LoginService } from "src/app/services/LoginService/login.service";
+import { LoginService } from '../../services/LoginService/login.service'
 import { token } from "../../models/handleHeaderOnit";
 
 //Redux

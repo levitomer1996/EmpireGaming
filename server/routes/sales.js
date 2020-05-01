@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost/EmpireGaming", {
 
 router.get("/", (req, res) => {
   sale.find({}, (err, sales) => {
+    console.log(sales)
     res.send(sales);
   });
 });
